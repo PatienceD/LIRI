@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/PatienceD/LIRI/issues"
   },
-  "homepage": "https://github.com/PatienceD/LIRI#readme"
+  "homepage": "https://github.com/PatienceD/LIRI#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
+    "node-spotify-api": "^1.1.1"
+  }
 }
