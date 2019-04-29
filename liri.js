@@ -4,9 +4,13 @@ var Spotify = require('node-spotify-api');
 var keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
 
-// var song = process.argv[2];
-spotify.search({ type: 'track', query: 'The Sign' }).then(response => {
-    console.log(response);
+var song = process.argv[3];
+spotify.search({ type: 'track', query: song }).then(data => {
+    console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
+    console.log("Album Name: " + data.tracks.items[0].album.name);
+    console.log("Song Name: " + data.tracks.items[0].name)
+    console.log("Find the music here: " + data.tracks.items[0].artists[0].external_urls.spotify);
+
 
     // if (song) {
 
