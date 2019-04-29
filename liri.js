@@ -1,8 +1,9 @@
 require("dotenv").config();
+let axios = require("axios");
 // var fs = require("fs");
-var Spotify = require('node-spotify-api');
-var keys = require("./keys.js");
-var spotify = new Spotify(keys.spotify);
+let Spotify = require('node-spotify-api');
+let keys = require("./keys.js");
+let spotify = new Spotify(keys.spotify);
 // fs.readFile("random.txt", "utf8", function (error, data) {
 //     if (error) {
 //         return console.log(error);
@@ -40,10 +41,8 @@ if (process.argv[2] === "spotify-this-song" && process.argv[3] === "undefined") 
 
 } else if (process.argv[2] === "movie-this") {
 
-    var axios = require("axios");
-
-    var movie = process.argv[3];
-    var queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+    let movie = process.argv[3];
+    let queryUrl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
 
     console.log(queryUrl);
 
@@ -70,9 +69,17 @@ if (process.argv[2] === "spotify-this-song" && process.argv[3] === "undefined") 
         }
     })
         .catch(error => {
-            console.log(error.response)
+            console.log("This is the error: " + error)
         });
 
+} else if (process.argv[2] === "concert-this") {
+    let artist = process.argv[3];
+    let queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=eb5c2a63-daa4-4a52-9013-9157108d89a6";
+    console.log(queryUrl);
+
+    axios.get(queryUrl).then(response => {
+        console.log(response.data.Venue);
+    })
 }
 
 
