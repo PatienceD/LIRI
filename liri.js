@@ -1,5 +1,6 @@
 require("dotenv").config();
 let axios = require("axios");
+var moment = require('moment');
 // var fs = require("fs");
 let Spotify = require('node-spotify-api');
 let keys = require("./keys.js");
@@ -25,7 +26,7 @@ if (process.argv[2] === "spotify-this-song" && process.argv[3] === undefined) {
         });
 
 } else if (process.argv[2] === "spotify-this-song") {
-    spotify.search({ type: 'track', query: userInput }).then(function (data) {
+    spotify.search({ type: 'track', query: userInput }).then(data => {
         console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
         console.log("Song Name: " + data.tracks.items[0].name);
         console.log("Where to Listen: " + data.tracks.items[0].external_urls.spotify);
@@ -55,7 +56,7 @@ if (process.argv[2] === "spotify-this-song" && process.argv[3] === undefined) {
         console.log("Title: " + response.data.Title);
         console.log("Year: " + response.data.Year);
         console.log("imdb Rating: " + response.data.imdbRating);
-        console.log("Rotten Tomatoes Rating: " + response.data.Ratings.Value);
+        console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
         console.log("Country Filmed in: " + response.data.Country);
         console.log("Language: " + response.data.Language);
         console.log("The Plot: " + response.data.Plot);
@@ -67,12 +68,16 @@ if (process.argv[2] === "spotify-this-song" && process.argv[3] === undefined) {
 
 
 } else if (process.argv[2] === "concert-this") {
-    let artist = process.argv[3];
+    let artist = userInput;
     let queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=eb5c2a63-daa4-4a52-9013-9157108d89a6";
     console.log(queryUrl);
 
     axios.get(queryUrl).then(response => {
-        console.log(response.data);
+        console.log("Venue Name: " + response.data[0].venue.name);
+        console.log("Venue City: " + response.data[0].venue.city);
+        console.log("Date: " + moment(response.data[0].dateTime).format(" MMM D YYYY "));
+
+        //moment = info[1].dateTime??
     })
 }
 
