@@ -39,7 +39,7 @@ function spotifyMasterFunction(primaryCommand, userInput) {
         console.log("Title: Mr. Nobody");
         console.log("Year: 2013");
         console.log("imdb Rating: 7.8");
-        console.log("Rotten Tomatoes Rating: undefined");
+        console.log("Rotten Tomatoes Rating: 67%");
         console.log("Country Filmed in: Belgium, Germany, Canada, France, USA, UK");
         console.log("Language: English, Mohawk");
         console.log("The Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.");
